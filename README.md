@@ -1,4 +1,4 @@
-# Automated Test Evaluator
+# Automated Test Evaluator 📝
 
 An automated tool for evaluating exam papers based on provided marking schemes. This Streamlit application allows users to upload solved exam papers and corresponding marking schemes in PDF format. The tool generates a detailed report card with marks for each question, comments on mistakes, and an overall analysis of student performance.
 
