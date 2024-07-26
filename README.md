@@ -24,7 +24,7 @@ OPENAI_API_KEY="your_openai_api_key"
 
 ```
 
-1. Run the application using Streamlit:
+4. Run the application using Streamlit:
 
 ```
 streamlit run app.py.
