@@ -86,7 +86,7 @@ def main():
             exam_file_name = os.path.splitext(exam_file.name)[0]
 
             if st.button(f"Evaluate {exam_file_name}"):
-                with st.spinner(f"Generating Report Card for {exam_file.name}"):
+                with st.spinner(f"Generating Report Card for {exam_file_name}"):
                     report = evaluate_exam(solved_exam_text, marking_scheme_text)
                     st.markdown(report)
 
