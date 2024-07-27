@@ -3,12 +3,13 @@ import streamlit as st
 from dotenv import load_dotenv 
 from PyPDF2 import PdfReader
 from langchain_openai import ChatOpenAI
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from io import BytesIO
 from reportlab.lib import colors
 from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, Spacer
-from io import BytesIO
+
 
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -66,17 +67,17 @@ def generate_final_report(reports):
     messages = [
         ("system",
          """You are a report generator tasked with compiling individual exam evaluation reports into a comprehensive final report.
-         Your goal is to provide a summary table with total scores for each subject and an overall analysis of the student's performance.
+         Your goal is to provide a result table with total scores for each subject and an overall analysis of the student's performance.
          
          The final report should include:
-         - A summary table with subject names, total scores obtained, and other relevant details.
+         - A result table with subject names, total scores obtained, and other relevant details.
          - An overall analysis based on the individual reports provided.
          
          Use the following format for the final report:
          
-         # Final Report
+         # Report Card
 
-         ### Summary Table
+         ### Result Table
          
          | Subject        | Total Marks Obtained |
          |----------------|----------------------|
@@ -84,8 +85,7 @@ def generate_final_report(reports):
          | Subject Name 2 | X/Y                  | 
          
          ### Overall Analysis
-         - Summary of overall performance:
-         - Areas for improvement and suggestions:
+
          """),
         ("human",
          f"""Here are the individual reports for each exam paper:
@@ -107,7 +107,7 @@ def pdf_generator(final_report):
         'Title',
         parent=styles['Title'],
         fontName='Helvetica-Bold',
-        fontSize=18,
+        fontSize=26,
         spaceAfter=12,
         alignment=1  # Center align
     )
@@ -125,23 +125,24 @@ def pdf_generator(final_report):
         'BodyText',
         parent=styles['BodyText'],
         fontName='Helvetica',
-        fontSize=12,
+        fontSize=11,
         leading=14,
-        spaceAfter=6
+        spaceAfter=6,
+        alignment=4  # Justified
     )
 
     # Build the document
     content = []
 
     # Title
-    title = Paragraph("Final Report", title_style)
+    title = Paragraph("Report Card", title_style)
     content.append(title)
-    content.append(Spacer(1, 0.5 * inch))
+    content.append(Spacer(1, 0.2 * inch))
 
     # Result Table
-    result_table_title = Paragraph("Summary Table", heading_style)
+    result_table_title = Paragraph("Result Table", heading_style)
     content.append(result_table_title)
-    content.append(Spacer(1, 0.2 * inch))
+    content.append(Spacer(1, 0.1 * inch))
 
     # Process the summary table from final_report
     table_data = []
@@ -166,7 +167,7 @@ def pdf_generator(final_report):
     
     # Define table style
     table_style = TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightblue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
@@ -178,12 +179,12 @@ def pdf_generator(final_report):
         ('ALIGN', (0, 1), (-1, -1), 'CENTER'),
     ])
     
-    table = Table(table_data)
+    table = Table(table_data, colWidths=[doc.width/len(table_data[0])] * len(table_data[0]))
     table.setStyle(table_style)
     content.append(table)
-    content.append(Spacer(1, 0.5 * inch))
+    content.append(Spacer(1, 0.2 * inch))
 
-    # Extract Overall Analysis Section
+   # Extract Overall Analysis Section
     analysis_start = False
     analysis_lines = []
 
@@ -193,14 +194,14 @@ def pdf_generator(final_report):
             continue
         if analysis_start:
             # Collect lines for analysis until we hit a new section or end of data
-            if len(line.strip()) == 0:
+            if len(line.strip()) == 0 or line.startswith('###'):
                 break
             analysis_lines.append(line.strip())
 
     # Add Overall Analysis
     analysis_title = Paragraph("Overall Analysis", heading_style)
     content.append(analysis_title)
-    content.append(Spacer(1, 0.2 * inch))
+    content.append(Spacer(1, 0.1 * inch)) 
     
     if analysis_lines:
         analysis_text = '<br/>'.join(analysis_lines)
@@ -257,7 +258,7 @@ def main():
                 st.download_button(
                     label="Download Report",
                     data=pdf_buffer,
-                    file_name="final_report.pdf",
+                    file_name="report_card.pdf",
                     mime="application/pdf"
                 )
         
