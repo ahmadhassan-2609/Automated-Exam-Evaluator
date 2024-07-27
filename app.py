@@ -148,22 +148,30 @@ def pdf_generator(final_report):
     table_data = []
     lines = final_report.split('\n')
     
-    # Flag to track if we're in the table part
+    # Flags to track sections
     in_table = False
+    in_analysis = False
 
     for line in lines:
         # Skip lines that are separators or empty
         if '---' in line or len(line.strip()) == 0:
             continue
 
-        if 'Subject' in line or '|' in line:
+        if 'Result Table' in line:
             in_table = True
+            continue
+        elif 'Overall Analysis' in line:
+            in_table = False
+            in_analysis = True
+            continue
+        
+        if in_table:
             # Split and clean table data
             row = [cell.strip() for cell in line.split('|') if cell.strip()]
             table_data.append(row)
-        elif in_table:
-            # End of table section
-            break
+        elif in_analysis:
+            # Process and add overall analysis section
+            analysis_text = line.strip()
     
     # Define table style
     table_style = TableStyle([
@@ -184,32 +192,15 @@ def pdf_generator(final_report):
     content.append(table)
     content.append(Spacer(1, 0.2 * inch))
 
-   # Extract Overall Analysis Section
-    analysis_start = False
-    analysis_lines = []
-
-    for line in lines:
-        if '### Overall Analysis' in line:
-            analysis_start = True
-            continue
-        if analysis_start:
-            # Collect lines for analysis until we hit a new section or end of data
-            if len(line.strip()) == 0 or line.startswith('###'):
-                break
-            analysis_lines.append(line.strip())
-
-    # Add Overall Analysis
-    analysis_title = Paragraph("Overall Analysis", heading_style)
-    content.append(analysis_title)
-    content.append(Spacer(1, 0.1 * inch)) 
+    # Add Overall Analysis section
+    if in_analysis and analysis_text:
+        analysis_title = Paragraph("Overall Analysis", heading_style)
+        content.append(analysis_title)
+        content.append(Spacer(1, 0.1 * inch))
+        
+        overall_analysis = Paragraph(analysis_text, body_style)
+        content.append(overall_analysis)
     
-    if analysis_lines:
-        analysis_text = '<br/>'.join(analysis_lines)
-        analysis_paragraph = Paragraph(analysis_text, body_style)
-        content.append(analysis_paragraph)
-    else:
-        content.append(Paragraph("No analysis available.", body_style))
-
     # Build PDF
     doc.build(content)
     
