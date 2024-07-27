@@ -1,17 +1,17 @@
-# Automated Test Evaluator 📝
+# Automated Exam Evaluator 📝
 
-An automated tool for evaluating exam papers based on provided marking schemes. This Streamlit application allows users to upload solved exam papers and corresponding marking schemes in PDF format. The tool generates a detailed report card with marks for each question, comments on mistakes, and an overall analysis of student performance.
+This Streamlit application provides an automated way to evaluate exam papers based on provided marking schemes. It generates a comprehensive final report from the evaluations of multiple exam papers and marking schemes, which can be downloaded as a PDF.
 
 ## Features
 
-- Upload multiple solved exam papers and marking schemes in PDF format.
-- Automatically evaluate the exam papers based on the marking schemes.
-- Generate a detailed report card including marks and comments.
-- Download the generated report card as a Markdown file.
+- **Upload Exam Papers and Marking Schemes**: Upload multiple solved exam papers and corresponding marking schemes in PDF format.
+- **Automatic Evaluation**: The app evaluates each exam paper according to the marking scheme.
+- **Generate Final Report**: A single comprehensive final report is generated, including a result table of all subjects and an overall analysis of student performance.
+- **Download PDF**: The final report can be downloaded as a styled PDF.
 
-![frontend_1](https://github.com/user-attachments/assets/ac498015-1df3-4ea1-a5e3-6ab812eed485)
-![frontend_2](https://github.com/user-attachments/assets/da451654-2206-40c9-8607-80d7ca8a7dc3)
-
+![frontend](https://github.com/user-attachments/assets/919f83a1-ca47-4e4c-94ab-18872097dd2f)
+![frontend_2](https://github.com/user-attachments/assets/273dad7e-00e4-43f6-8437-87dfe11fd0bd)
+![report card](https://github.com/user-attachments/assets/2314bda7-33e1-4f2c-aa56-01404211e383)
 
 ## Installation
 
