@@ -219,7 +219,7 @@ def pdf_generator(final_report):
     return buffer.read()
 
 def main():
-    st.set_page_config(page_title='Test Evaluator', layout='wide')
+    st.set_page_config(page_title='Test Evaluator',page_icon="📝", layout='wide')
 
     col1, col2 = st.columns([7,1])  
     with col1:
