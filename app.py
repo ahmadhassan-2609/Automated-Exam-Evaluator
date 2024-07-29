@@ -13,7 +13,7 @@ from octoai.client import OctoAI
 from octoai.text_gen import ChatMessage
 
 load_dotenv()
-llama_api_key = os.getenv("LLAMA_API_KEY_405")
+llama_api_key = os.getenv("LLAMA_API_KEY")
 
 client = OctoAI(api_key=llama_api_key) 
 
