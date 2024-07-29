@@ -240,7 +240,7 @@ def main():
     with st.expander("How It Works"):
         st.write(
             """
-            The Automated Test Evaluator app uses Meta-Llama-3.1-405b-instruct AI model to evaluate exam papers based on provided marking schemes. Here’s a breakdown of how it works:
+            The Automated Test Evaluator app uses the latest :blue[Meta-Llama-3.1-405b-Instruct] AI model to evaluate exam papers based on provided marking schemes. Here’s a breakdown of how it works:
 
             1. **Upload Exam Papers and Marking Schemes**:
                 - Upload your solved exam papers and the corresponding marking schemes in PDF format. Make sure both are clear and legible to facilitate accurate text extraction.
