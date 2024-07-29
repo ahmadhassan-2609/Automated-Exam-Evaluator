@@ -227,7 +227,7 @@ def main():
     with col1:
         st.title("Automated Test Evaluator 📝| Powered by Meta AI")
     with col2:
-        st.image("data/meta-logo.png", width=125)  
+        st.image("meta-logo.png", width=125)  
 
     st.write(
         """
@@ -278,6 +278,18 @@ def main():
                 - The evaluation process is automated and does not support manual adjustments or corrections to the generated report.
             """
         )
+
+    with st.expander("Download Sample Files"):
+        sample_files_dir = 'data/'
+        sample_files = os.listdir(sample_files_dir)
+        for file in sample_files:
+            with open(os.path.join(sample_files_dir, file), 'rb') as f:
+                st.download_button(
+                    label=f"Download {file}",
+                    data=f,
+                    file_name=file,
+                    mime='application/pdf'
+                )
 
     st.subheader("Upload files")
     exam_files = st.file_uploader("Solved exam papers", type="pdf", accept_multiple_files=True)
