@@ -1,6 +1,5 @@
 import os
 import streamlit as st
-from dotenv import load_dotenv 
 from PyPDF2 import PdfReader
 from io import BytesIO
 from reportlab.lib import colors
@@ -12,8 +11,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, 
 from octoai.client import OctoAI
 from octoai.text_gen import ChatMessage
 
-load_dotenv()
-llama_api_key = os.getenv("LLAMA_API_KEY")
+llama_api_key = st.secrets['LLAMA_API_KEY']
 
 client = OctoAI(api_key=llama_api_key) 
 
