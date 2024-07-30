@@ -221,11 +221,11 @@ def pdf_generator(final_report):
 def main():
     st.set_page_config(page_title='Test Evaluator',page_icon="📝", layout='wide')
 
-    col1, col2 = st.columns([7,1])  
+    col1, col2 = st.columns([5,1])  
     with col1:
         st.title("Automated Test Evaluator 📝| Powered by Meta AI")
     with col2:
-        st.image("smart-forum-logo.png", width=150)  
+        st.image("smart-forum-logo.png", width=200)  
 
     st.write(
         """
