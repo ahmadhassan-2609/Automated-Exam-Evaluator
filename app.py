@@ -225,7 +225,7 @@ def main():
     with col1:
         st.title("Automated Test Evaluator 📝| Powered by Meta AI")
     with col2:
-        st.image("meta-logo.png", width=125)  
+        st.image("smart-forum-logo.png", width=150)  
 
     st.write(
         """
