@@ -1,32 +1,63 @@
-# Automated Exam Evaluator 📝
+# Automated Test Evaluator 📝
 
-This Streamlit application provides an automated way to evaluate exam papers based on provided marking schemes. It generates a comprehensive final report from the evaluations of multiple exam papers and marking schemes, which can be downloaded as a PDF.
+## Introduction
 
-## Features
+The Automated Test Evaluator is a tool designed to help you evaluate exam papers quickly and efficiently. This app utilizes the Meta-Llama-3.1-405b-Instruct AI model to assess exam papers based on provided marking schemes, generating detailed report cards and a comprehensive final report.
 
-- **Upload Exam Papers and Marking Schemes**: Upload multiple solved exam papers and corresponding marking schemes in PDF format.
-- **Automatic Evaluation**: The app evaluates each exam paper according to the marking scheme.
-- **Generate Final Report**: A single comprehensive final report is generated, including a result table of all subjects and an overall analysis of student performance.
-- **Download PDF**: The final report can be downloaded as a styled PDF.
+You can access the deployed app: https://automated-test-evaluator.streamlit.app/ 
 
-![frontend](https://github.com/user-attachments/assets/919f83a1-ca47-4e4c-94ab-18872097dd2f)
-![frontend_2](https://github.com/user-attachments/assets/273dad7e-00e4-43f6-8437-87dfe11fd0bd)
-![report card](https://github.com/user-attachments/assets/2314bda7-33e1-4f2c-aa56-01404211e383)
+## How It Works
+
+1. **Upload Exam Papers and Marking Schemes**: Upload solved exam papers and corresponding marking schemes in PDF format.
+2. **Text Extraction**: The app extracts text from the PDF files using a PDF reader.
+3. **Evaluation**: The AI model evaluates each exam paper, awarding marks and providing comments based on the marking scheme.
+4. **Report Generation**: The app compiles individual reports into a final report, including a result table and overall analysis.
+5. **Downloading Reports**: You can download the final report as a PDF file.
+
+## Limitations
+
+1. **Accuracy of Evaluation**: Evaluation relies on the quality of text extraction and the provided marking scheme.
+2. **File Formats**: Only PDF files are supported.
+3. **Assessment Criteria**: Evaluations are strictly based on the marking scheme provided.
+4. **Token Limits**: Extremely lengthy documents may exceed the AI model's token limit.
+5. **User Inputs**: Equal numbers of exam papers and marking schemes must be uploaded for proper evaluation.
 
 ## Installation
 
-1. Clone this repository to your local machine.
-2. Install the required dependencies by running pip install -r requirements.txt.
-3. Set up your environment variables by creating a .env file and adding your OpenAI API key:
+1. Clone the repository:
+    
+    ```
+    git clone <repository_url>
+    cd <repository_directory>
+    ```
+    
+2. Install the required dependencies:
+    
+    ```
+    pip install -r requirements.txt
+    ```
+    
+3. Set up your Streamlit secrets by creating a `secrets.toml` file with your LLAMA API key:
+    
+    ```toml
+    [secrets]
+    LLAMA_API_KEY = "your_llama_api_key"
+    ```
+    
 
-```
-OPENAI_API_KEY="your_openai_api_key"
+## Usage
 
-```
+1. Run the Streamlit app:
+    
+    ```
+    streamlit run app.py
+    ```
+    
+2. Open your browser and navigate to the Streamlit app URL.
+3. Follow the instructions to upload exam papers and marking schemes.
+4. Click "Evaluate" to generate report cards and the final report.
+5. Download the generated reports as PDF files.
 
-4. Run the application using Streamlit:
+## Sample Files
 
-```
-streamlit run app.py.
-
-```
+Sample files are available for download within the app under the "Download Sample Files" section.
