@@ -1,8 +1,8 @@
-# Automated Test Evaluator 📝
+# Automated Exam Evaluator 📝
 
 ## Introduction
 
-The Automated Test Evaluator is a tool designed to help you evaluate exam papers quickly and efficiently. This app utilizes the Meta-Llama-3.1-405b-Instruct AI model to assess exam papers based on provided marking schemes, generating detailed report cards and a comprehensive final report.
+The Automated Exam Evaluator is a tool designed to help you evaluate exam papers quickly and efficiently. This app utilizes the Meta-Llama-3.1-405b-Instruct AI model to assess exam papers based on provided marking schemes, generating detailed report cards and a comprehensive final report.
 
 You can access the deployed app [here](https://automated-test-evaluator.streamlit.app/)
 
