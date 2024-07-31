@@ -219,11 +219,11 @@ def pdf_generator(final_report):
     return buffer.read()
 
 def main():
-    st.set_page_config(page_title='Test Evaluator',page_icon="📝", layout='wide')
+    st.set_page_config(page_title='Exam Evaluator',page_icon="📝", layout='wide')
 
     col1, col2 = st.columns([5,1])  
     with col1:
-        st.title("Automated Test Evaluator 📝| Powered by Meta AI")
+        st.title("Automated Exam Evaluator 📝| Powered by Meta AI")
     with col2:
         st.image("smart-forum-logo.png", width=200)  
 
@@ -238,7 +238,7 @@ def main():
     with st.expander("How It Works"):
         st.write(
             """
-            The Automated Test Evaluator app uses the latest :blue[Meta-Llama-3.1-405b-Instruct] AI model to evaluate exam papers based on provided marking schemes. Here’s a breakdown of how it works:
+            The Automated Exam Evaluator app uses the latest :blue[Meta-Llama-3.1-405b-Instruct] AI model to evaluate exam papers based on provided marking schemes. Here’s a breakdown of how it works:
 
             1. **Upload Exam Papers and Marking Schemes**:
                 - Upload your solved exam papers and the corresponding marking schemes in PDF format. Make sure both are clear and legible to facilitate accurate text extraction.
