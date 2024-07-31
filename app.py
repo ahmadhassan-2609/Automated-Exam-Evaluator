@@ -279,7 +279,7 @@ def main():
 
     with st.expander("Download Sample Files"):
         sample_files_dir = 'data/'
-        sample_files = os.listdir(sample_files_dir)
+        sample_files = sorted(os.listdir(sample_files_dir))
         for file in sample_files:
             with open(os.path.join(sample_files_dir, file), 'rb') as f:
                 st.download_button(
